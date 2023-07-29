@@ -30,7 +30,7 @@ export default function Index() {
       <Container className={styles.section}>
         <div className={styles.heroInfo}>
           <h1 className={styles.heroTitle}>Audit any GitHub repo.</h1>
-          <p className={styles.heroLead}>We audit your stuff</p>
+          <p className={styles.heroLead}>Code auditing done right</p>
         </div>
         <div className={styles.heroActions}>
           <Button icon={<SignInIcon />} onClick={() => signIn()}>
@@ -51,55 +51,56 @@ export default function Index() {
           <Feature
             description={
               <>
-                A collaborative whiteboard app with included share menu,
-                documents listing, users, groups, permissions, and more.
+                AudGit integrates directly with GitHub to access repos for
+                auditing. No need to copy/paste code.
               </>
             }
-            title="Liveblocks"
+            title="GitHub Integration"
           />
           <Feature
             description={
               <>
-                Best practices followed, using a mixture of SSR and custom API
-                endpoints. Modify documents from both client and server.
+                Connect your Replit projects for deeper analysis by granting
+                code and runtime access to AudGit.
               </>
             }
-            title="Next.js"
+            title="Replit Integration"
           />
           <Feature
             description={
               <>
-                Adjust our reusable interface & design system to fit your needs.
+                Leverages NIP-90 Data Vending Machines for an open audit
+                marketplace. Customers request audits, providers fulfill.
               </>
             }
-            title="User Interface"
+            title="Nostr Integration"
           />
           <Feature
             description={
               <>
-                All custom client and server functions are fully typed, and easy
-                to update.
+                Auditors can specialize and innovate with niche audits like
+                security, performance, best practices etc.
               </>
             }
-            title="TypeScript"
+            title="Specialization"
           />
           <Feature
             description={
               <>
-                Complete authentication, compatible with any NextAuth provider,
-                including GitHub, Google, Auth0, and many more.
+                Monetization through nostr incentivizes high quality audits
+                through competition and reputation building.
               </>
             }
-            title="NextAuth.js"
+            title="Incentives"
           />
           <Feature
             description={
               <>
-                See data update live using the SWR (state-while-revalidate)
-                library.
+                Easy to build new audits using Replit templates. Publish them to
+                AudGit's marketplace.
               </>
             }
-            title="SWR"
+            title="Developer Platform"
           />
         </div>
       </Container>
