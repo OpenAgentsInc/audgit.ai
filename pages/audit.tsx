@@ -50,7 +50,7 @@ export default function Audit() {
     console.log("userInput", userInput);
 
     const event = new NDKEvent(ndk, {
-      kind: 68005,
+      kind: 68006,
       tags: [
         ["j", "code-review"],
         ["bid", "10000"],
