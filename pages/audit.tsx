@@ -80,11 +80,7 @@ export default function Audit() {
     });
     setSub(newSub!);
 
-    console.log("signed_event", event.rawEvent());
     await event.publish();
-    // setUserInput("");
-
-    console.log("Set userInput to null");
   };
 
   return (
