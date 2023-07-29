@@ -122,6 +122,23 @@ export default function Audit() {
           START BASIC AUDIT
         </button>
       </form>
+
+      <div style={{ marginTop: 30, maxWidth: 660 }}>
+        {eventFeed.map((event) => {
+          return (
+            <div
+              style={{
+                backgroundColor: "#444",
+                padding: 10,
+                borderRadius: 8,
+                marginTop: 10,
+              }}
+            >
+              <p>{event.content}</p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
