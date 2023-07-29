@@ -82,7 +82,7 @@ export default function Audit() {
 
     console.log("signed_event", event.rawEvent());
     await event.publish();
-    setUserInput("");
+    // setUserInput("");
 
     console.log("Set userInput to null");
   };
