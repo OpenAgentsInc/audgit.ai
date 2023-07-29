@@ -48,7 +48,7 @@ export default function Audit() {
 
     const event = new NDKEvent(ndk, {
       kind: 65005, // ??
-      kind: 65006,
+      // kind: 65006,
       tags: [
         ["j", "code-review"], // This is what the existing code review bot is looking for
         // ["j", "issue-review"], // This is what we can do to avoid collision
