@@ -33,12 +33,10 @@ export default function Index() {
           <p className={styles.heroLead}>Code review done right</p>
         </div>
         <div className={styles.heroActions}>
-          <Button icon={<SignInIcon />} onClick={() => signIn()}>
+          {/* <Button icon={<SignInIcon />} onClick={() => signIn()}>
             Sign in
-          </Button>
-          <LinkButton href="/audit" variant="secondary">
-            Audit an issue
-          </LinkButton>
+          </Button> */}
+          <LinkButton href="/audit">Audit an issue</LinkButton>
         </div>
       </Container>
       <Container className={styles.section}>
