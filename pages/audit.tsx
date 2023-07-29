@@ -45,6 +45,7 @@ export default function Audit() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     if (!userInput || !ndk) return;
     e.preventDefault();
+    console.log("submitting");
 
     const event = new NDKEvent(ndk, {
       kind: 65005, // ??
@@ -74,11 +75,13 @@ export default function Audit() {
     );
     newSub!.on("event", (event: NDKEvent) => {
       // add event to event feed
+      console.log("event", event);
       setEventFeed((prevEventFeed) => [event, ...prevEventFeed]);
     });
     setSub(newSub!);
 
     await event.publish();
+    console.log("published");
   };
 
   return (
@@ -112,7 +115,7 @@ export default function Audit() {
             onChange={(e) => setUserInput(e.target.value)}
           />
           <Button
-            icon={<PlusIcon />}
+            // icon={<PlusIcon />}
             type="submit"
             style={{ padding: 24, borderRadius: 8 }}
           >
