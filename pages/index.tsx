@@ -31,7 +31,7 @@ export default function Index() {
         <div className={styles.heroInfo}>
           <h1 className={styles.heroTitle}>Audit any GitHub repo.</h1>
           <p className={styles.heroLead}>
-            Crowdsourced AI audits powered by Claude & Nostr
+            Crowdsourced code audits powered by AI & Nostr
           </p>
         </div>
         <div className={styles.heroActions}>
