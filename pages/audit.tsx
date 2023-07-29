@@ -3,6 +3,7 @@ import NDK, {
     NDKEvent, NDKPrivateKeySigner, NDKSubscription
 } from "@nostr-dev-kit/ndk"
 import { DocumentRowSkeleton } from "../components/Documents"
+import { PlusIcon } from "../icons"
 import { MarketingLayout } from "../layouts/Marketing"
 import { RELAYS, useNDK } from "../lib/client/hooks/state"
 import { Button } from "../primitives/Button"
@@ -111,43 +112,13 @@ export default function Audit() {
             onChange={(e) => setUserInput(e.target.value)}
           />
           <Button
-            // icon={<PlusIcon />}
+            icon={<PlusIcon />}
             type="submit"
             style={{ padding: 24, borderRadius: 8 }}
-            // style={{ backgroundColor: "turquoise" }}
-            // onClick={handleCopyToClipboard}
           >
             Submit
           </Button>
-          {/* <button
-          type="submit"
-          style={{
-            backgroundColor: "turquoise",
-            color: "black",
-            padding: 10,
-            borderRadius: 12,
-            marginLeft: 14,
-          }}
-        >
-          START BASIC AUDIT
-        </button> */}
         </form>
-
-        {/* <DocumentRowSkeleton />
-      <DocumentRowSkeleton />
-      <DocumentRowSkeleton />
-      <DocumentRowSkeleton /> */}
-
-        {/* <Input
-        // className={styles.inviteInput}
-        disabled={false}
-        name="userId"
-        placeholder="Email address"
-        required
-        type="email"
-      /> */}
-
-        {/* <DashboardHeader isOpen={true} /> */}
 
         <div style={{ marginTop: 30, maxWidth: 660 }}>
           {eventFeed.map((event) => {
