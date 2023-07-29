@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react"
-// import { NDKPrivateKeySigner } from "@nostr-dev-kit/ndk"
 import NDK, {
     NDKEvent, NDKPrivateKeySigner, NDKSubscription
 } from "@nostr-dev-kit/ndk"
-import { DashboardHeader } from "../components/Dashboard"
 import { DocumentRowSkeleton } from "../components/Documents"
-import { ShareDialog, ShareDialogDefault } from "../components/ShareDialog"
-import { PlusIcon } from "../icons"
+import { MarketingLayout } from "../layouts/Marketing"
 import { RELAYS, useNDK } from "../lib/client/hooks/state"
-import { Button, LinkButton } from "../primitives/Button"
+import { Button } from "../primitives/Button"
 import { Input } from "../primitives/Input"
 
 import type { NostrEvent } from "@nostr-dev-kit/ndk";
@@ -84,52 +81,45 @@ export default function Audit() {
   };
 
   return (
-    <div
-      style={{
-        backgroundColor: "#121215",
-        height: "100vh",
-        width: "100vw",
-        padding: 40,
-      }}
-    >
-      <div style={{ maxWidth: 70 }}>
-        <LinkButton href="/" variant="secondary">
-          Home
-        </LinkButton>
-      </div>
-      {/* <h1 style={{ marginTop: 30, textAlign: "center" }}>
-        AUDIT A GITHUB ISSUE
-      </h1> */}
-      <form
-        onSubmit={handleSubmit}
+    <MarketingLayout>
+      <div
         style={{
-          display: "flex",
-          flexDirection: "row",
-          placeItems: "center",
-          justifyContent: "center",
+          backgroundColor: "#121215",
+          height: "100vh",
+          width: "100vw",
+          padding: 40,
         }}
       >
-        <Input
-          placeholder="Enter a GitHub issue URL"
+        <form
+          onSubmit={handleSubmit}
           style={{
-            minWidth: 500,
-            padding: 24,
-            borderRadius: 8,
-            marginRight: 12,
+            display: "flex",
+            flexDirection: "row",
+            placeItems: "center",
+            justifyContent: "center",
           }}
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-        />
-        <Button
-          // icon={<PlusIcon />}
-          type="submit"
-          style={{ padding: 24, borderRadius: 8 }}
-          // style={{ backgroundColor: "turquoise" }}
-          // onClick={handleCopyToClipboard}
         >
-          Submit
-        </Button>
-        {/* <button
+          <Input
+            placeholder="Enter a GitHub issue URL"
+            style={{
+              minWidth: 500,
+              padding: 24,
+              borderRadius: 8,
+              marginRight: 12,
+            }}
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+          />
+          <Button
+            // icon={<PlusIcon />}
+            type="submit"
+            style={{ padding: 24, borderRadius: 8 }}
+            // style={{ backgroundColor: "turquoise" }}
+            // onClick={handleCopyToClipboard}
+          >
+            Submit
+          </Button>
+          {/* <button
           type="submit"
           style={{
             backgroundColor: "turquoise",
@@ -141,14 +131,14 @@ export default function Audit() {
         >
           START BASIC AUDIT
         </button> */}
-      </form>
+        </form>
 
-      {/* <DocumentRowSkeleton />
+        {/* <DocumentRowSkeleton />
       <DocumentRowSkeleton />
       <DocumentRowSkeleton />
       <DocumentRowSkeleton /> */}
 
-      {/* <Input
+        {/* <Input
         // className={styles.inviteInput}
         disabled={false}
         name="userId"
@@ -157,51 +147,52 @@ export default function Audit() {
         type="email"
       /> */}
 
-      {/* <DashboardHeader isOpen={true} /> */}
+        {/* <DashboardHeader isOpen={true} /> */}
 
-      <div style={{ marginTop: 30, maxWidth: 660 }}>
-        {eventFeed.map((event) => {
-          let date = "unknown";
+        <div style={{ marginTop: 30, maxWidth: 660 }}>
+          {eventFeed.map((event) => {
+            let date = "unknown";
 
-          if (event.created_at) {
-            const timeOptions = {
-              hour: "numeric",
-              minute: "numeric",
-              second: "numeric",
-            };
+            if (event.created_at) {
+              const timeOptions = {
+                hour: "numeric",
+                minute: "numeric",
+                second: "numeric",
+              };
 
-            date = new Date(event.created_at * 1000).toLocaleString(
-              "en-US",
-              // @ts-ignore
-              timeOptions
-            );
-          }
+              date = new Date(event.created_at * 1000).toLocaleString(
+                "en-US",
+                // @ts-ignore
+                timeOptions
+              );
+            }
 
-          return (
-            <div
-              key={event.id}
-              style={{
-                backgroundColor: "#444",
-                padding: 10,
-                borderRadius: 8,
-                marginTop: 10,
-              }}
-            >
-              <p
+            return (
+              <div
+                key={event.id}
                 style={{
-                  textAlign: "right",
-                  marginBottom: 2,
-                  color: "#999",
-                  fontSize: 14,
+                  backgroundColor: "#444",
+                  padding: 10,
+                  borderRadius: 8,
+                  marginTop: 10,
                 }}
               >
-                {date}
-              </p>
-              <p>{event.content}</p>
-            </div>
-          );
-        })}
+                <p
+                  style={{
+                    textAlign: "right",
+                    marginBottom: 2,
+                    color: "#999",
+                    fontSize: 14,
+                  }}
+                >
+                  {date}
+                </p>
+                <p>{event.content}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </MarketingLayout>
   );
 }
