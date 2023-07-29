@@ -1,5 +1,4 @@
 export default function Audit() {
-  // demo issue:
   return (
     <div
       style={{
@@ -15,6 +14,17 @@ export default function Audit() {
         defaultValue={"https://github.com/ArcadeLabsInc/arcade/issues/447"}
         style={{ width: 500, padding: 10, borderRadius: 8, marginTop: 10 }}
       />
+      <button
+        style={{
+          backgroundColor: "turquoise",
+          color: "black",
+          padding: 10,
+          borderRadius: 12,
+          marginLeft: 14,
+        }}
+      >
+        START BASIC AUDIT
+      </button>
     </div>
   );
 }
