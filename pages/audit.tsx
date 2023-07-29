@@ -1,12 +1,38 @@
 import { useEffect } from "react"
-import { NDKPrivateKeySigner } from "@nostr-dev-kit/ndk"
+// import { NDKPrivateKeySigner } from "@nostr-dev-kit/ndk"
+import NDK, {
+    NDKEvent, NDKPrivateKeySigner, NDKSubscription
+} from "@nostr-dev-kit/ndk"
+import { RELAYS, useNDK } from "../lib/client/hooks/state"
 import { LinkButton } from "../primitives/Button"
 
 export default function Audit() {
+  const { ndk, setNDK } = useNDK();
   useEffect(() => {
-    const key = NDKPrivateKeySigner.generate();
-    console.log(key);
+    try {
+      const signer = NDKPrivateKeySigner.generate();
+      const ndk = new NDK({
+        explicitRelayUrls: RELAYS,
+        signer,
+      });
+
+      ndk.pool.on("relay:connect", async (r: any) => {
+        // setStatus("Connected");
+        console.log(`Connected to a relay ${r.url}`);
+      });
+
+      ndk.pool.on("connect", async () => {
+        console.log("connected to something", ndk.pool.stats());
+      });
+
+      ndk.connect(2500);
+
+      setNDK(ndk);
+    } catch (e) {
+      console.log("error", e);
+    }
   }, []);
+
   return (
     <div
       style={{
