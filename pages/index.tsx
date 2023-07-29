@@ -36,12 +36,8 @@ export default function Index() {
           <Button icon={<SignInIcon />} onClick={() => signIn()}>
             Sign in
           </Button>
-          <LinkButton
-            href="https://liveblocks.io/docs/guides/nextjs-starter-kit"
-            target="_blank"
-            variant="secondary"
-          >
-            Learn more
+          <LinkButton href="/audit" variant="secondary">
+            Audit an issue
           </LinkButton>
         </div>
       </Container>
