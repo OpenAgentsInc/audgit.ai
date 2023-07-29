@@ -12,7 +12,12 @@ export default function Audit() {
   const [userInput, setUserInput] = useState<string>(
     "https://github.com/ArcadeLabsInc/arcade/issues/447"
   );
+  const [eventFeed, setEventFeed] = useState<NDKEvent[]>([]);
   const [sub, setSub] = useState<NDKSubscription | null>(null);
+
+  useEffect(() => {
+    console.log("eventFeed", eventFeed);
+  }, [eventFeed]);
 
   useEffect(() => {
     try {
@@ -55,7 +60,30 @@ export default function Audit() {
 
     await event.sign();
 
-    console.log("SUP SIGNED EVENT:", event);
+    // check if there is a subscription running here
+    if (sub !== null) {
+      console.log("already subscribed");
+      sub.stop();
+    }
+
+    // create a subscription
+    const newSub = ndk?.subscribe(
+      {
+        ...event.filter(),
+      },
+      { closeOnEose: false, groupable: false }
+    );
+    newSub!.on("event", (event: NDKEvent) => {
+      // add event to event feed
+      setEventFeed((prevEventFeed) => [event, ...prevEventFeed]);
+    });
+    setSub(newSub!);
+
+    console.log("signed_event", event.rawEvent());
+    await event.publish();
+    setUserInput("");
+
+    console.log("Set userInput to null");
   };
 
   return (
