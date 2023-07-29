@@ -28,12 +28,7 @@ export default function Audit() {
       });
 
       ndk.pool.on("relay:connect", async (r: any) => {
-        // setStatus("Connected");
         console.log(`Connected to a relay ${r.url}`);
-      });
-
-      ndk.pool.on("connect", async () => {
-        console.log("connected to something", ndk.pool.stats());
       });
 
       ndk.connect(2500);
