@@ -10,7 +10,7 @@
 }
 
 .heroTitle {
-  max-width: 500px;
+  max-width: 600px;
   margin-bottom: var(--space-9);
   font-size: var(--size-4xl);
   font-weight: 800;
@@ -18,7 +18,7 @@
 }
 
 .heroLead {
-  max-width: 500px;
+  max-width: 600px;
   color: var(--color-text-lighter);
   font-size: var(--size-xl);
 }

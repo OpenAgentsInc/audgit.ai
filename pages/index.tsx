@@ -30,7 +30,9 @@ export default function Index() {
       <Container className={styles.section}>
         <div className={styles.heroInfo}>
           <h1 className={styles.heroTitle}>Audit any GitHub repo.</h1>
-          <p className={styles.heroLead}>Code review by Claude</p>
+          <p className={styles.heroLead}>
+            Crowdsourced AI audits powered by Claude & Nostr
+          </p>
         </div>
         <div className={styles.heroActions}>
           {/* <Button icon={<SignInIcon />} onClick={() => signIn()}>
@@ -54,20 +56,20 @@ export default function Index() {
           <Feature
             description={
               <>
-                Connect your Replit projects for deeper analysis by granting
-                code and runtime access to AudGit.
-              </>
-            }
-            title="Replit Integration"
-          />
-          <Feature
-            description={
-              <>
                 Leverages NIP-90 Data Vending Machines for an open audit
                 marketplace. Customers request audits, providers fulfill.
               </>
             }
             title="Nostr Integration"
+          />
+          <Feature
+            description={
+              <>
+                Connect your Replit projects for deeper analysis by granting
+                code and runtime access to AudGit.
+              </>
+            }
+            title="Replit Integration"
           />
           <Feature
             description={
