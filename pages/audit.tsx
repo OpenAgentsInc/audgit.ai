@@ -1,6 +1,12 @@
+import { useEffect } from "react"
+import { NDKPrivateKeySigner } from "@nostr-dev-kit/ndk"
 import { LinkButton } from "../primitives/Button"
 
 export default function Audit() {
+  useEffect(() => {
+    const key = NDKPrivateKeySigner.generate();
+    console.log(key);
+  }, []);
   return (
     <div
       style={{
