@@ -1,11 +1,12 @@
-import clsx from "clsx";
-import { ComponentProps } from "react";
-import styles from "./Badge.module.css";
+import clsx from "clsx"
+import { ComponentProps } from "react"
+import styles from "./Badge.module.css"
 
 export function Badge({
   className,
   ...props
 }: Omit<ComponentProps<"a">, "href">) {
+  return <></>;
   return (
     <a
       className={clsx(className, styles.badge)}
