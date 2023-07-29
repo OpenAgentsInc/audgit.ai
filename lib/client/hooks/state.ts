@@ -2,6 +2,7 @@ import { atom, useAtom } from "jotai"
 import NDK from "@nostr-dev-kit/ndk"
 
 export const RELAYS = [
+  "wss://relay.arcade.city",
   "wss://relay.damus.io",
   "wss://nostr.swiss-enigma.ch",
   // "wss://relay.f7z.io",
