@@ -4,7 +4,7 @@ import NDK from "@nostr-dev-kit/ndk"
 export const RELAYS = [
   "wss://relay.damus.io",
   "wss://nostr.swiss-enigma.ch",
-  "wss://relay.f7z.io",
+  // "wss://relay.f7z.io",
 ];
 
 export const relayAtoms = {
