@@ -3,8 +3,13 @@ import { useEffect, useState } from "react"
 import NDK, {
     NDKEvent, NDKPrivateKeySigner, NDKSubscription
 } from "@nostr-dev-kit/ndk"
+import { DashboardHeader } from "../components/Dashboard"
+import { DocumentRowSkeleton } from "../components/Documents"
+import { ShareDialog, ShareDialogDefault } from "../components/ShareDialog"
+import { PlusIcon } from "../icons"
 import { RELAYS, useNDK } from "../lib/client/hooks/state"
-import { LinkButton } from "../primitives/Button"
+import { Button, LinkButton } from "../primitives/Button"
+import { Input } from "../primitives/Input"
 
 import type { NostrEvent } from "@nostr-dev-kit/ndk";
 export default function Audit() {
@@ -92,15 +97,39 @@ export default function Audit() {
           Home
         </LinkButton>
       </div>
-      <h1 style={{ marginTop: 30 }}>AUDIT A GITHUB ISSUE</h1>
-      <form onSubmit={handleSubmit}>
-        <input
+      {/* <h1 style={{ marginTop: 30, textAlign: "center" }}>
+        AUDIT A GITHUB ISSUE
+      </h1> */}
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          placeItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Input
           placeholder="Enter a GitHub issue URL"
-          style={{ width: 500, padding: 10, borderRadius: 8, marginTop: 10 }}
+          style={{
+            minWidth: 500,
+            padding: 24,
+            borderRadius: 8,
+            marginRight: 12,
+          }}
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
         />
-        <button
+        <Button
+          // icon={<PlusIcon />}
+          type="submit"
+          style={{ padding: 24, borderRadius: 8 }}
+          // style={{ backgroundColor: "turquoise" }}
+          // onClick={handleCopyToClipboard}
+        >
+          Submit
+        </Button>
+        {/* <button
           type="submit"
           style={{
             backgroundColor: "turquoise",
@@ -111,8 +140,24 @@ export default function Audit() {
           }}
         >
           START BASIC AUDIT
-        </button>
+        </button> */}
       </form>
+
+      {/* <DocumentRowSkeleton />
+      <DocumentRowSkeleton />
+      <DocumentRowSkeleton />
+      <DocumentRowSkeleton /> */}
+
+      {/* <Input
+        // className={styles.inviteInput}
+        disabled={false}
+        name="userId"
+        placeholder="Email address"
+        required
+        type="email"
+      /> */}
+
+      {/* <DashboardHeader isOpen={true} /> */}
 
       <div style={{ marginTop: 30, maxWidth: 660 }}>
         {eventFeed.map((event) => {
