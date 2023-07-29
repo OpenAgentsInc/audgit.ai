@@ -45,9 +45,9 @@ export default function Audit() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     if (!userInput || !ndk) return;
     e.preventDefault();
-    console.log("userInput", userInput);
 
     const event = new NDKEvent(ndk, {
+      kind: 65005, // ??
       kind: 65006,
       tags: [
         ["j", "code-review"], // This is what the existing code review bot is looking for
