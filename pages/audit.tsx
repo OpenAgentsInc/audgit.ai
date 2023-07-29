@@ -50,10 +50,11 @@ export default function Audit() {
     console.log("userInput", userInput);
 
     const event = new NDKEvent(ndk, {
-      kind: 68005, // existing code review; wrong format but good to experiment with received events
-      // kind: 68006, // our new code review kind for what we do here
+      // kind: 65005, // existing code review; wrong format but good to experiment with received events
+      kind: 65006, // our new code review kind for what we do here
       tags: [
-        ["j", "code-review"],
+        ["j", "issue-review"],
+        // ["j", "code-review"],
         ["bid", "10000"],
       ],
       content: userInput,
