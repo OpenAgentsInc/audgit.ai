@@ -50,11 +50,10 @@ export default function Audit() {
     console.log("userInput", userInput);
 
     const event = new NDKEvent(ndk, {
-      // kind: 65005, // existing code review; wrong format but good to experiment with received events
-      kind: 65006, // our new code review kind for what we do here
+      kind: 65006,
       tags: [
-        ["j", "issue-review"],
-        // ["j", "code-review"],
+        // ["j", "code-review"], // This is what the existing code review bot is looking for
+        ["j", "issue-review"], // This is what we can do to avodi collision
         ["bid", "10000"],
       ],
       content: userInput,
