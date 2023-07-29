@@ -88,6 +88,8 @@ export default function Audit() {
     console.log("published");
   };
 
+  const loading = eventFeed.length === 0 && submitted;
+
   return (
     <MarketingLayout>
       <div
@@ -118,14 +120,19 @@ export default function Audit() {
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
           />
-          <Button type="submit" style={{ padding: 24, borderRadius: 8 }}>
+          <Button
+            type="submit"
+            // icon={}
+            style={{ padding: 24, borderRadius: 8 }}
+            disabled={loading}
+          >
             Submit
           </Button>
         </form>
 
-        {eventFeed.length > 0 ? (
-          <EventFeed eventFeed={eventFeed} />
-        ) : (
+        <EventFeed eventFeed={eventFeed} />
+
+        {loading && (
           <div style={{ marginLeft: "35%", marginTop: 20 }}>
             <DocumentRowSkeleton />
             <DocumentRowSkeleton />
