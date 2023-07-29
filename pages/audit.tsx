@@ -6,11 +6,14 @@ import NDK, {
 import { RELAYS, useNDK } from "../lib/client/hooks/state"
 import { LinkButton } from "../primitives/Button"
 
+import type { NostrEvent } from "@nostr-dev-kit/ndk";
 export default function Audit() {
   const { ndk, setNDK } = useNDK();
   const [userInput, setUserInput] = useState<string>(
     "https://github.com/ArcadeLabsInc/arcade/issues/447"
   );
+  const [sub, setSub] = useState<NDKSubscription | null>(null);
+
   useEffect(() => {
     try {
       const signer = NDKPrivateKeySigner.generate();
@@ -40,6 +43,19 @@ export default function Audit() {
     if (!userInput || !ndk) return;
     e.preventDefault();
     console.log("userInput", userInput);
+
+    const event = new NDKEvent(ndk, {
+      kind: 68005,
+      tags: [
+        ["j", "code-review"],
+        ["bid", "10000"],
+      ],
+      content: userInput,
+    } as NostrEvent);
+
+    await event.sign();
+
+    console.log("SUP SIGNED EVENT:", event);
   };
 
   return (
