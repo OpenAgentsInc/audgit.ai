@@ -4,4 +4,7 @@ module.exports = {
   images: {
     domains: ["liveblocks.io"],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
