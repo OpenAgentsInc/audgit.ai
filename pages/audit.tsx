@@ -19,6 +19,8 @@ export default function Audit() {
   const [eventFeed, setEventFeed] = useState<NDKEvent[]>([]);
   const [sub, setSub] = useState<NDKSubscription | null>(null);
 
+  const [submitted, setSubmitted] = useState<boolean>(false);
+
   useEffect(() => {
     console.log("eventFeed", eventFeed);
   }, [eventFeed]);
@@ -47,6 +49,7 @@ export default function Audit() {
     if (!userInput || !ndk) return;
     e.preventDefault();
     console.log("submitting");
+    setSubmitted(true);
 
     const event = new NDKEvent(ndk, {
       kind: 65005, // ??
@@ -120,7 +123,15 @@ export default function Audit() {
           </Button>
         </form>
 
-        <EventFeed eventFeed={eventFeed} />
+        {eventFeed.length > 0 ? (
+          <EventFeed eventFeed={eventFeed} />
+        ) : (
+          <div style={{ marginLeft: "35%", marginTop: 20 }}>
+            <DocumentRowSkeleton />
+            <DocumentRowSkeleton />
+            <DocumentRowSkeleton />
+          </div>
+        )}
       </div>
     </MarketingLayout>
   );
