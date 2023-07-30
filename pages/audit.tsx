@@ -4,7 +4,6 @@ import NDK, {
 } from "@nostr-dev-kit/ndk"
 import { DocumentRowSkeleton } from "../components/Documents"
 import { EventFeed } from "../components/EventFeed"
-import { PlusIcon } from "../icons"
 import { MarketingLayout } from "../layouts/Marketing"
 import { RELAYS, useNDK } from "../lib/client/hooks/state"
 import { Button } from "../primitives/Button"

@@ -38,7 +38,11 @@ export const EventFeed = ({ eventFeed }) => {
             >
               {date}
             </p>
-            <p>{event.content}</p>
+            <p
+              style={{
+                color: "#fff"
+              }}            
+            >{event.content}</p>
           </div>
         );
       })}
