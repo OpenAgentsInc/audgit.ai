@@ -12,14 +12,22 @@ import { Input } from "../primitives/Input"
 import type { NostrEvent } from "@nostr-dev-kit/ndk";
 export default function Audit() {
   const { ndk, setNDK } = useNDK();
+  const storedUserInput = localStorage.getItem("userInput");
   const [userInput, setUserInput] = useState<string>(
-    "https://github.com/ArcadeLabsInc/audgit/issues/5"
+    storedUserInput || ""
   );
   const [eventFeed, setEventFeed] = useState<NDKEvent[]>([]);
   const [sub, setSub] = useState<NDKSubscription | null>(null);
   const [eventId, setEventId] = useState<string>("");
 
   const [submitted, setSubmitted] = useState<boolean>(false);
+
+  useEffect(() => {
+    const storedEventId = localStorage.getItem("eventId");
+    if (storedEventId) {
+      setEventId(storedEventId);
+    }
+  }, []);
 
   useEffect(() => {
     console.log("eventFeed", eventFeed);
@@ -66,6 +74,9 @@ export default function Audit() {
     await event.sign();
 
     setEventId(event.id)
+
+    localStorage.setItem("userInput", userInput);
+    localStorage.setItem("eventId", event.id);
 
     // await event.publish();
     // console.log("published");
