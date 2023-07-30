@@ -97,7 +97,7 @@ export default function Audit() {
   const loading = eventFeed.length === 0 && submitted;
 
   return (
-    <MarketingLayout>
+    <MarketingLayout hideFooter={true}>
       <div
         style={{
           backgroundColor: "#121215",
