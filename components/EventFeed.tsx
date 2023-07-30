@@ -15,6 +15,8 @@ export const EventFeed = ({ eventFeed }) => {
       {eventFeed.map((event) => {
         let date = "unknown";
 
+        console.log(event);
+
         if (event.created_at) {
           const timeOptions = {
             hour: "numeric",
@@ -50,9 +52,7 @@ export const EventFeed = ({ eventFeed }) => {
               {date}
             </p>
 
-            <div style={{color: "white"}}>
             <Markdown markdown={event.content} />
-            </div>
           </div>
         );
       })}

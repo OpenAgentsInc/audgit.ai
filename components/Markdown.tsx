@@ -24,11 +24,13 @@ export const Markdown = ({ markdown }: { markdown: string }) => {
   );
 
   return (
-    <div
-      className="markdown markdownspacing"
-      dangerouslySetInnerHTML={{
-        __html: renderedMarkdown,
-      }}
-    />
+    <div className={styles.contentContainer}>
+      <div
+        className="markdown markdownspacing"
+        dangerouslySetInnerHTML={{
+          __html: renderedMarkdown,
+        }}
+      />
+    </div>
   );
 };
