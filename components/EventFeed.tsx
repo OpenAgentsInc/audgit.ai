@@ -1,8 +1,10 @@
 // import styles from "./EventFeed.module.css"
 import { Button } from "../primitives/Button"
 import { Markdown } from "./Markdown"
-
+import { useState } from 'react'
 export const EventFeed = ({ eventFeed }) => {
+  const [paid, setPaid] = useState("")
+  
   return (
     <div
       style={{
@@ -51,7 +53,7 @@ export const EventFeed = ({ eventFeed }) => {
               marginTop: 10,
             }}
           >
-            {amount && (
+            {amount && event.id != paid && (
               <Button
                 style={{
                   padding: 4,
@@ -71,7 +73,10 @@ export const EventFeed = ({ eventFeed }) => {
                     return;
                   }
                   await window.webln.enable();
-                  await window.webln.sendPayment(invoice);
+                  const {preimage} = await window.webln.sendPayment(invoice);
+                  if (!!preimage) {
+                    setPaid(event.id)
+                  }
                 }}
               >
                 Pay {amount} {amount === 1 ? "sat" : "sats"}
