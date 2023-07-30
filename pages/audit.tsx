@@ -4,7 +4,6 @@ import NDK, {
 } from "@nostr-dev-kit/ndk"
 import { DocumentRowSkeleton } from "../components/Documents"
 import { EventFeed } from "../components/EventFeed"
-import { PlusIcon } from "../icons"
 import { MarketingLayout } from "../layouts/Marketing"
 import { RELAYS, useNDK } from "../lib/client/hooks/state"
 import { Button } from "../primitives/Button"
@@ -18,6 +17,7 @@ export default function Audit() {
   );
   const [eventFeed, setEventFeed] = useState<NDKEvent[]>([]);
   const [sub, setSub] = useState<NDKSubscription | null>(null);
+  const [eventId, setEventId] = useState<string>("");
 
   const [submitted, setSubmitted] = useState<boolean>(false);
 
@@ -34,7 +34,7 @@ export default function Audit() {
       });
 
       ndk.pool.on("relay:connect", async (r: any) => {
-        console.log(`Connected to a relay ${r.url}`);
+        console.log(`Connected to a relay ${r}`);
       });
 
       ndk.connect(2500);
@@ -65,34 +65,39 @@ export default function Audit() {
 
     await event.sign();
 
-    // check if there is a subscription running here
-    if (sub !== null) {
-      console.log("already subscribed");
-      sub.stop();
-    }
-
-    // console.log("{ ...event.filter() );
-
-    // create a subscription
-    const newSub = ndk?.subscribe(
-      {
-        ...event.filter(),
-      },
-      { closeOnEose: false, groupable: false }
-    );
-    console.log("newSub", newSub);
-    newSub!.on("event", (event: NDKEvent) => {
-      // add event to event feed
-      console.log("event", event);
-      setEventFeed((prevEventFeed) => [event, ...prevEventFeed]);
-    });
-    setSub(newSub!);
+    setEventId(event.id)
 
     // await event.publish();
     // console.log("published");
     const publishedRelays = await event.publish();
     console.log("published to", publishedRelays);
   };
+
+  useEffect(()=>{
+    // check if there is a subscription running here
+    if (eventId) {
+      if (sub !== null) {
+        console.log("already subscribed");
+        sub.stop();
+      }
+      
+      // create a subscription
+      const newSub = ndk?.subscribe(
+        {
+          "#e": [eventId]
+        },
+        { closeOnEose: false, groupable: false }
+      );
+
+      console.log("newSub", newSub);
+      newSub!.on("event", (event: NDKEvent) => {
+        // add event to event feed
+        console.log("event", event);
+        setEventFeed((prevEventFeed) => [event, ...prevEventFeed]);
+      });
+      setSub(newSub!);
+    }
+  }, [eventId])
 
   const loading = eventFeed.length === 0 && submitted;
 
