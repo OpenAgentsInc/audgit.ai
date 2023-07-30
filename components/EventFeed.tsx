@@ -15,6 +15,8 @@ export const EventFeed = ({ eventFeed }) => {
       {eventFeed.map((event) => {
         let date = "unknown";
 
+        console.log(event);
+
         if (event.created_at) {
           const timeOptions = {
             hour: "numeric",

@@ -23,6 +23,7 @@ export default function Audit() {
   const [submitted, setSubmitted] = useState<boolean>(false);
 
   useEffect(() => {
+    console.log("hi");
     const storedEventId = localStorage.getItem("eventId");
     if (storedEventId) {
       setEventId(storedEventId);
