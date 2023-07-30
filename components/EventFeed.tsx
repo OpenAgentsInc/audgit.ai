@@ -1,3 +1,5 @@
+import ReactMarkdown from "react-markdown"
+
 export const EventFeed = ({ eventFeed }) => {
   return (
     <div style={{ marginTop: 30, maxWidth: 660 }}>
@@ -38,7 +40,9 @@ export const EventFeed = ({ eventFeed }) => {
             >
               {date}
             </p>
-            <p>{event.content}</p>
+            <div style={{ color: "white" }}>
+              <ReactMarkdown children={event.content} />
+            </div>
           </div>
         );
       })}
