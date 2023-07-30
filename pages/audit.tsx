@@ -34,7 +34,7 @@ export default function Audit() {
       });
 
       ndk.pool.on("relay:connect", async (r: any) => {
-        console.log(`Connected to a relay ${r.url}`);
+        console.log(`Connected to a relay ${r}`);
       });
 
       ndk.connect(2500);
@@ -75,27 +75,28 @@ export default function Audit() {
 
   useEffect(()=>{
     // check if there is a subscription running here
-    if (sub !== null) {
-      console.log("already subscribed");
-      sub.stop();
-    }
-    
-    // create a subscription
-    const newSub = ndk?.subscribe(
-      {
-        "#e": [eventId]
-      },
-      { closeOnEose: false, groupable: false }
-    );
+    if (eventId) {
+      if (sub !== null) {
+        console.log("already subscribed");
+        sub.stop();
+      }
+      
+      // create a subscription
+      const newSub = ndk?.subscribe(
+        {
+          "#e": [eventId]
+        },
+        { closeOnEose: false, groupable: false }
+      );
 
-    console.log("newSub", newSub);
-    newSub!.on("event", (event: NDKEvent) => {
-      // add event to event feed
-      console.log("event", event);
-      setEventFeed((prevEventFeed) => [event, ...prevEventFeed]);
-    });
-    
-    setSub(newSub!);
+      console.log("newSub", newSub);
+      newSub!.on("event", (event: NDKEvent) => {
+        // add event to event feed
+        console.log("event", event);
+        setEventFeed((prevEventFeed) => [event, ...prevEventFeed]);
+      });
+      setSub(newSub!);
+    }
   }, [eventId])
 
   const loading = eventFeed.length === 0 && submitted;
