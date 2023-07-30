@@ -27,6 +27,7 @@ export default function Index() {
   return (
     <MarketingLayout>
       <Container className={styles.section}>
+
         <div className={styles.heroInfo}>
           <h1 className={styles.heroTitle}>Audit any GitHub repo.</h1>
           <p className={styles.heroLead}>
@@ -39,6 +40,23 @@ export default function Index() {
           </Button> */}
           <LinkButton href="/audit">Audit an issue</LinkButton>
         </div>
+
+      <img
+        src="/logo.png"
+        alt="Logo"
+          style={
+            {
+              position: "absolute",
+              top: "0", /* Adjust this value to set the vertical position */
+              right: "0", /* Adjust this value to set the horizontal position */
+              margin: "20px", /* Adjust this value to set the margin */
+              width: "100px", /* Set the width of the logo image */
+              height: "100px", /* Set the height of the logo image */
+            }
+          }
+      />
+
+
       </Container>
       <Container className={styles.section}>
         <h2 className={styles.sectionTitle}>Features</h2>
