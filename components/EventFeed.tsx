@@ -55,6 +55,8 @@ export const EventFeed = ({ eventFeed }) => {
               <Button
                 style={{
                   padding: 4,
+                  paddingLeft: 10,
+                  paddingRight: 10,
                   borderRadius: 8,
                   position: "absolute",
                   textAlign: "left",
@@ -72,7 +74,7 @@ export const EventFeed = ({ eventFeed }) => {
                   await window.webln.sendPayment(invoice);
                 }}
               >
-                Pay {amount} sats
+                Pay {amount} {amount === 1 ? "sat" : "sats"}
               </Button>
             )}
 
