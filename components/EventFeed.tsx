@@ -1,8 +1,17 @@
-import ReactMarkdown from "react-markdown"
+// import styles from "./EventFeed.module.css"
+import { Markdown } from "./Markdown"
 
 export const EventFeed = ({ eventFeed }) => {
   return (
-    <div style={{ marginTop: 30, maxWidth: 660 }}>
+    <div
+      style={{
+        paddingLeft: "5%",
+        paddingRight: "5%",
+        marginTop: 30,
+        width: "100%",
+        // backgroundColor: "blue",
+      }}
+    >
       {eventFeed.map((event) => {
         let date = "unknown";
 
@@ -40,9 +49,11 @@ export const EventFeed = ({ eventFeed }) => {
             >
               {date}
             </p>
-            <div style={{ color: "white" }}>
-              <ReactMarkdown children={event.content} />
-            </div>
+
+            {/* <div style={{ color: "white" }}> */}
+            {/* <div className={{ margin}}></div> */}
+            <Markdown markdown={event.content} />
+            {/* </div> */}
           </div>
         );
       })}

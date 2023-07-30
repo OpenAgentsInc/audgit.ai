@@ -10,15 +10,17 @@ import { Button } from "../primitives/Button"
 import { Input } from "../primitives/Input"
 
 import type { NostrEvent } from "@nostr-dev-kit/ndk";
+
 export default function Audit() {
   const { ndk, setNDK } = useNDK();
-  const [userInput, setUserInput] = useState<string>("");
+  const [userInput, setUserInput] = useState<string>(
+    "https://github.com/jeffthibault/python-nostr/issues/87"
+  );
   const [eventFeed, setEventFeed] = useState<NDKEvent[]>([]);
   const [sub, setSub] = useState<NDKSubscription | null>(null);
   const [eventId, setEventId] = useState<string>("");
 
   const [submitted, setSubmitted] = useState<boolean>(false);
-
 
   useEffect(() => {
     const storedEventId = localStorage.getItem("eventId");
@@ -28,7 +30,7 @@ export default function Audit() {
     const storedUserInput = localStorage.getItem("userInput");
 
     if (storedUserInput) {
-      setUserInput(storedUserInput)
+      setUserInput(storedUserInput);
     }
   }, []);
 
@@ -76,7 +78,7 @@ export default function Audit() {
 
     await event.sign();
 
-    setEventId(event.id)
+    setEventId(event.id);
 
     localStorage.setItem("userInput", userInput);
     localStorage.setItem("eventId", event.id);
@@ -87,18 +89,18 @@ export default function Audit() {
     console.log("published to", publishedRelays);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     // check if there is a subscription running here
     if (eventId) {
       if (sub !== null) {
         console.log("already subscribed");
         sub.stop();
       }
-      
+
       // create a subscription
       const newSub = ndk?.subscribe(
         {
-          "#e": [eventId]
+          "#e": [eventId],
         },
         { closeOnEose: false, groupable: false }
       );
@@ -111,7 +113,7 @@ export default function Audit() {
       });
       setSub(newSub!);
     }
-  }, [eventId])
+  }, [eventId]);
 
   const loading = eventFeed.length === 0 && submitted;
 
@@ -120,7 +122,8 @@ export default function Audit() {
       <div
         style={{
           backgroundColor: "#121215",
-          height: "100vh",
+          minHeight: "100vh",
+          height: "100%",
           width: "100vw",
           padding: 40,
         }}
