@@ -89,11 +89,8 @@ export const EventFeed = ({ eventFeed }) => {
               {date}
             </p>
 
-            <div style={{ marginTop: amount ? 28 : -14 }}>
+            <div style={{ marginTop: amount ? 28 : -14, color: "white" }}>
               <Markdown markdown={event.content} />
-              <div style={{ marginTop: 28 }}>
-                <Markdown markdown={event.content} />
-              </div>
             </div>
           </div>
         );
