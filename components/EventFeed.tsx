@@ -1,4 +1,5 @@
 // import styles from "./EventFeed.module.css"
+import { Button } from "../primitives/Button"
 import { Markdown } from "./Markdown"
 
 export const EventFeed = ({ eventFeed }) => {
@@ -14,8 +15,17 @@ export const EventFeed = ({ eventFeed }) => {
     >
       {eventFeed.map((event) => {
         let date = "unknown";
-
         console.log(event);
+
+        const amountTag = event.tags.find((tag) => tag[0] === "amount");
+
+        let invoice: string | null = null;
+        let amount: number | null = null;
+
+        if (amountTag) {
+          amount = parseFloat(amountTag[1]);
+          invoice = amountTag[2];
+        }
 
         if (event.created_at) {
           const timeOptions = {
@@ -41,6 +51,41 @@ export const EventFeed = ({ eventFeed }) => {
               marginTop: 10,
             }}
           >
+            {amount && (
+              <Button
+                style={{
+                  padding: 4,
+                  borderRadius: 8,
+                  position: "absolute",
+                  textAlign: "left",
+                  marginBottom: 2,
+                  marginTop: 6,
+                  color: "#999",
+                  fontSize: 14,
+                }}
+                onClick={async () => {
+                  if (!window.webln) {
+                    alert("no webln");
+                    return;
+                  }
+
+                  await window.webln.enable();
+
+                  // find tag
+
+                  // alert(JSON.stringify(event.tags));
+
+                  await window.webln.sendPayment({
+                    // amount: 100,
+                    // event.tags.
+                    invoice,
+                  });
+                }}
+              >
+                Pay {amount} sats
+              </Button>
+            )}
+
             <p
               style={{
                 textAlign: "right",
@@ -52,8 +97,11 @@ export const EventFeed = ({ eventFeed }) => {
               {date}
             </p>
 
-            <div style={{color: "white"}}>
-            <Markdown markdown={event.content} />
+            <div style={{ color: "white" }}>
+              <Markdown markdown={event.content} />
+              <div style={{ marginTop: 28 }}>
+                <Markdown markdown={event.content} />
+              </div>
             </div>
           </div>
         );
