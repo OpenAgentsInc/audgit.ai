@@ -8,8 +8,10 @@ import { MarketingLayout } from "../layouts/Marketing"
 import { RELAYS, useNDK } from "../lib/client/hooks/state"
 import { Button } from "../primitives/Button"
 import { Input } from "../primitives/Input"
+import styles from "./audit.module.css"
 
 import type { NostrEvent } from "@nostr-dev-kit/ndk";
+
 export default function Audit() {
   const { ndk, setNDK } = useNDK();
   const [userInput, setUserInput] = useState<string>(

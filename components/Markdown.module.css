@@ -1,0 +1,10 @@
+/* .markdownSpacing {
+  margin-bottom: 20px;
+  width: 1000;
+  height: 100;
+  background-color: "white";
+} */
+
+.markdownspacing :global(p) {
+  margin-bottom: 20px;
+}

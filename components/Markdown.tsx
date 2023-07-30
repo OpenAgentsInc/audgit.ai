@@ -3,6 +3,7 @@ import hljs from "highlight.js"
 import DOMPurify from "isomorphic-dompurify"
 import { marked } from "marked"
 import { useMemo } from "react"
+import styles from "./Markdown.module.css"
 
 // Initialize and use highlight.js
 marked.setOptions({
@@ -24,7 +25,7 @@ export const Markdown = ({ markdown }: { markdown: string }) => {
 
   return (
     <div
-      className="markdown"
+      className="markdown markdownspacing"
       dangerouslySetInnerHTML={{
         __html: renderedMarkdown,
       }}

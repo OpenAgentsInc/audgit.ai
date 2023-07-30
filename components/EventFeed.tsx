@@ -1,3 +1,4 @@
+// import styles from "./EventFeed.module.css"
 import { Markdown } from "./Markdown"
 
 export const EventFeed = ({ eventFeed }) => {
@@ -48,9 +49,11 @@ export const EventFeed = ({ eventFeed }) => {
             >
               {date}
             </p>
-            <div style={{ color: "white" }}>
-              <Markdown markdown={event.content} />
-            </div>
+
+            {/* <div style={{ color: "white" }}> */}
+            {/* <div className={{ margin}}></div> */}
+            <Markdown markdown={event.content} />
+            {/* </div> */}
           </div>
         );
       })}
