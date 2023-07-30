@@ -67,7 +67,7 @@ export const EventFeed = ({ eventFeed }) => {
                 }}
                 onClick={async () => {
                   if (!window.webln) {
-                    alert("no webln");
+                    alert("Please install a Lightning wallet like Alby");
                     return;
                   }
                   await window.webln.enable();
