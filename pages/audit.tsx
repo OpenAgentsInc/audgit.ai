@@ -52,7 +52,8 @@ export default function Audit() {
     setSubmitted(true);
 
     const event = new NDKEvent(ndk, {
-      kind: 65005, // ??
+      kind: 65123,
+      // kind: 65005, // ??
       // kind: 65006,
       tags: [
         ["j", "code-review"], // This is what the existing code review bot is looking for
@@ -84,8 +85,10 @@ export default function Audit() {
     });
     setSub(newSub!);
 
-    await event.publish();
-    console.log("published");
+    // await event.publish();
+    // console.log("published");
+    const publishedRelays = await event.publish();
+    console.log("published to", publishedRelays);
   };
 
   const loading = eventFeed.length === 0 && submitted;
