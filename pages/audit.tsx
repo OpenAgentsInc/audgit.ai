@@ -14,7 +14,7 @@ import type { NostrEvent } from "@nostr-dev-kit/ndk";
 export default function Audit() {
   const { ndk, setNDK } = useNDK();
   const [userInput, setUserInput] = useState<string>(
-    "https://github.com/ArcadeLabsInc/arcade/issues/447"
+    "https://github.com/ArcadeLabsInc/audgit/issues/5"
   );
   const [eventFeed, setEventFeed] = useState<NDKEvent[]>([]);
   const [sub, setSub] = useState<NDKSubscription | null>(null);
@@ -71,6 +71,8 @@ export default function Audit() {
       sub.stop();
     }
 
+    // console.log("{ ...event.filter() );
+
     // create a subscription
     const newSub = ndk?.subscribe(
       {
@@ -78,6 +80,7 @@ export default function Audit() {
       },
       { closeOnEose: false, groupable: false }
     );
+    console.log("newSub", newSub);
     newSub!.on("event", (event: NDKEvent) => {
       // add event to event feed
       console.log("event", event);
