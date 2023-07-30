@@ -148,3 +148,7 @@ html.grabbing {
 html.grabbing * {
   user-select: none;
 }
+
+.markdown p {
+  color: "white" !important;
+}
