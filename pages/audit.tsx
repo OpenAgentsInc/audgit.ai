@@ -78,6 +78,7 @@ export default function Audit() {
 
     await event.sign();
 
+    setEventFeed([])
     setEventId(event.id);
 
     localStorage.setItem("userInput", userInput);
