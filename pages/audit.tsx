@@ -12,20 +12,23 @@ import { Input } from "../primitives/Input"
 import type { NostrEvent } from "@nostr-dev-kit/ndk";
 export default function Audit() {
   const { ndk, setNDK } = useNDK();
-  const storedUserInput = localStorage.getItem("userInput");
-  const [userInput, setUserInput] = useState<string>(
-    storedUserInput || ""
-  );
+  const [userInput, setUserInput] = useState<string>("");
   const [eventFeed, setEventFeed] = useState<NDKEvent[]>([]);
   const [sub, setSub] = useState<NDKSubscription | null>(null);
   const [eventId, setEventId] = useState<string>("");
 
   const [submitted, setSubmitted] = useState<boolean>(false);
 
+
   useEffect(() => {
     const storedEventId = localStorage.getItem("eventId");
     if (storedEventId) {
       setEventId(storedEventId);
+    }
+    const storedUserInput = localStorage.getItem("userInput");
+
+    if (storedUserInput) {
+      setUserInput(storedUserInput)
     }
   }, []);
 
