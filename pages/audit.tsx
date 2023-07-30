@@ -8,7 +8,6 @@ import { MarketingLayout } from "../layouts/Marketing"
 import { RELAYS, useNDK } from "../lib/client/hooks/state"
 import { Button } from "../primitives/Button"
 import { Input } from "../primitives/Input"
-import styles from "./audit.module.css"
 
 import type { NostrEvent } from "@nostr-dev-kit/ndk";
 
@@ -123,7 +122,8 @@ export default function Audit() {
       <div
         style={{
           backgroundColor: "#121215",
-          height: "100vh",
+          minHeight: "100vh",
+          height: "100%",
           width: "100vw",
           padding: 40,
         }}
