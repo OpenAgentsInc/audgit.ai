@@ -23,7 +23,7 @@ export const EventFeed = ({ eventFeed }) => {
         let amount: number | null = null;
 
         if (amountTag) {
-          amount = parseFloat(amountTag[1]);
+          amount = parseFloat(amountTag[1]) / 1000;
           invoice = amountTag[2];
         }
 
@@ -68,18 +68,8 @@ export const EventFeed = ({ eventFeed }) => {
                     alert("no webln");
                     return;
                   }
-
                   await window.webln.enable();
-
-                  // find tag
-
-                  // alert(JSON.stringify(event.tags));
-
-                  await window.webln.sendPayment({
-                    // amount: 100,
-                    // event.tags.
-                    invoice,
-                  });
+                  await window.webln.sendPayment(invoice);
                 }}
               >
                 Pay {amount} sats
@@ -97,7 +87,7 @@ export const EventFeed = ({ eventFeed }) => {
               {date}
             </p>
 
-            <div style={{ color: "white" }}>
+            <div style={{ marginTop: amount ? 28 : -14 }}>
               <Markdown markdown={event.content} />
               <div style={{ marginTop: 28 }}>
                 <Markdown markdown={event.content} />
