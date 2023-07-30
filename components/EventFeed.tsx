@@ -52,7 +52,9 @@ export const EventFeed = ({ eventFeed }) => {
               {date}
             </p>
 
+            <div style={{color: "white"}}>
             <Markdown markdown={event.content} />
+            </div>
           </div>
         );
       })}
