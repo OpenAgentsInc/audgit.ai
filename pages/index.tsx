@@ -5,7 +5,6 @@ import { ComponentProps, ReactNode } from "react"
 import { DASHBOARD_URL } from "../constants"
 import { SignInIcon } from "../icons"
 import { MarketingLayout } from "../layouts/Marketing"
-import * as Server from "../lib/server"
 import { Button, LinkButton } from "../primitives/Button"
 import { Container } from "../primitives/Container"
 import styles from "./index.module.css"
@@ -103,21 +102,3 @@ export default function Index() {
     </MarketingLayout>
   );
 }
-
-// If logged in, redirect to dashboard
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const session = await Server.getServerSession(req, res);
-
-  if (session) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: DASHBOARD_URL,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-};

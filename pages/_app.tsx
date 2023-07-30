@@ -1,10 +1,9 @@
-import "../styles/globals.css";
-import { Session } from "next-auth";
-import { SessionProvider } from "next-auth/react";
-import { AppProps } from "next/app";
-import Head from "next/head";
-import { TooltipProvider } from "@radix-ui/react-tooltip";
-import { Badge } from "../components/Badge";
+import "../styles/globals.css"
+import { Session } from "next-auth"
+import { SessionProvider } from "next-auth/react"
+import { AppProps } from "next/app"
+import Head from "next/head"
+import { TooltipProvider } from "@radix-ui/react-tooltip"
 
 export default function App({
   Component,
@@ -19,7 +18,6 @@ export default function App({
       <TooltipProvider>
         <SessionProvider session={pageProps.session}>
           <Component {...pageProps} />
-          <Badge />
         </SessionProvider>
       </TooltipProvider>
     </>
